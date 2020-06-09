@@ -1,0 +1,56 @@
+
+
+
+\documentclass[a4paper]{article}
+\pagestyle{empty}
+
+\makeatletter
+
+\newif\ifaskmaps@opti% want indexes
+\newif\ifaskmaps@optf% want output function printed
+\newif\ifaskmaps@optb% want input variable bit combinations at columns and rows
+
+\askmaps@optbtrue
+
+\def\askmaps@expandparams#1{%
+	\askmaps@optifalse\askmaps@optffalse\askmaps@optbtrue%
+	\@tfor\askmaps@opt:=#1\do{%
+		%\#\askmaps@opt\#
+		\if i\askmaps@opt\askmaps@optitrue\fi%
+		\if I\askmaps@opt\askmaps@optifalse\fi%
+		\if f\askmaps@opt\askmaps@optftrue\fi%
+		\if F\askmaps@opt\askmaps@optffalse\fi%
+		\if b\askmaps@opt\askmaps@optbtrue\fi%
+		\if B\askmaps@opt\askmaps@optbfalse\fi%
+		\if c\askmaps@opt\askmaps@optitrue\askmaps@optftrue\askmaps@optbtrue\fi%
+		\if C\askmaps@opt\askmaps@optifalse\askmaps@optffalse\askmaps@optbfalse\fi%
+	}%
+}%
+
+\newcommand{\blabla}[1]{%
+	\askmaps@expandparams{#1}%
+	%Tekst2
+	Tekst\par
+	\ifaskmaps@opti set indexes to true\par \fi
+	\ifaskmaps@optf set output function to true\par \fi
+	\ifaskmaps@optb set bit combinations to true\par \fi
+	\medskip
+}
+
+\def\expandparams{\askmaps@expandparams}
+
+\makeatother
+
+
+\begin{document}
+
+
+\blabla{ibf}
+
+\blabla{}
+
+\blabla{ibfc}
+
+\blabla{ibfC}
+
+\end{document}

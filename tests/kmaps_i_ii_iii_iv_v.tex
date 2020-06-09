@@ -1,0 +1,236 @@
+
+\documentclass[a4paper,12pt,fleqn]{article}
+%% Set page layout
+\usepackage[a4paper,bindingoffset=0.2in,left=.7in,right=0.7in,top=1in,bottom=1in,footskip=.40in]{geometry}
+%\usepackage{calc}
+%\usepackage{mathptmx}
+\usepackage[scaled=0.92]{helvet}
+\usepackage{sansmath}
+\usepackage{xcolor}
+\usepackage{printlen}
+\usepackage{tikz}
+
+% Use American Style K-maps package...
+\usepackage{askmaps}
+\askmapunitlength=8.8mm
+
+\definecolor{red}{rgb}{1,0,0}
+\definecolor{blue}{rgb}{0,0,1}
+\definecolor{darkgreen}{rgb}{0,0.4,0}
+\definecolor{orange}{rgb}{1,0.5,0}
+%
+\thispagestyle{empty}
+\setlength\parindent{0pt}
+
+\input{kvmacros.tex}
+
+\begin{document}
+
+%Test: {\slshape 0123456789} {\itshape 0123456789}
+\newpage
+\section*{American Style Karnaugh Maps}
+
+The Karnaugh maps for one variable
+\medskip
+
+\askmapi{S}{a}{f}{10}{}
+\askmapi{S}{a}{fi}{01}{}
+\bigskip
+
+The Karnaugh maps for two variables
+\medskip
+
+\askmapii{S}{ab}{f}{1010}{}
+\askmapii{S}{ab}{fi}{1010}{}
+\bigskip
+
+The Karnaugh maps for three variables
+\medskip
+
+\askmapiii{S}{abc}{f}{00111010}{}
+\askmapiii{S}{ab{$x^n$}}{fi}{00111010}{}
+\bigskip
+
+The Karnaugh maps for three variables (alternate style)
+\medskip
+
+\askmapiiialt{S}{abc}{f}{00111010}{}
+\askmapiiialt{S}{abd}{fi}{00111010}{}
+\bigskip
+
+The Karnaugh maps for four variables
+\medskip
+
+\askmapiv{S}{abcd}{f}{1100100100011101}{}
+\askmapiv{S}{abcd}{fi}{1100100100011101}{}
+\bigskip
+
+\newpage
+The Karnaugh maps for five variables
+\medskip
+
+\askmapv{S}{abcde}{fi}{01010101101010100101010110101010}{}
+\bigskip
+
+Or you can split the 5-map into two 4-maps with additional information
+at the bottom...
+\medskip
+
+\askmapiv{S}{bcde}{fi}{0101010110101010}{%
+\put(2,-0.8){\makebox(0,0){a = 0}}}
+\askmapiv{S}{bcde}{fi}{0101010110101010}{%
+\put(2,-0.8){\makebox(0,0){a = 1}}}
+\bigskip
+
+
+
+
+\newpage
+You can also do math things by using the known \$ signs...
+\medskip
+
+\askmapii{$S_{0}$}{{$a_{1}$}{$a_{0}$}}{f}{1010}{}
+\bigskip
+
+You can do math thing in roman font...
+\medskip
+
+\askmapiii{$\mathrm{M^{n+1}_{0}}$}{{$\mathrm{M^{n}_{2}}$}{$\mathrm{M^{n}_{1}}$}{$\mathrm{M^{n}_{0}}$}}{f}{11100111}{}%
+\bigskip
+
+You can do things with don't cares...
+\medskip
+
+\askmapii{S}{ab}{f}{011-}{}
+\askmapiii{S}{abc}{f}{001--10-}{}
+\askmapiv{S}{abcd}{fi}{110--001-0001-110-}{}
+\bigskip
+
+You can use colors and empty function values and variables as values too...
+\medskip
+
+\askmapiii{S}{abc}{f}{{\color{blue}{0}}{\color{blue}{0}}{\color{red}{1}}{ }{ }{\color{red}{1}}{\color{blue}{0}}{ }}{}
+\askmapii{S}{ab}{f}{{$i_{0}$}{$i_{1}$}{$i_{2}$}{$i_{3}$}}{}
+\bigskip
+
+\newpage
+You can set the font to something else ... and use sans math font ...
+\medskip
+
+{\fontfamily{phv}\selectfont%
+\askmapiv{S}{abcd}{f}{0110111011110011}{}%
+}
+{\fontfamily{phv}\selectfont\sansmath
+\askmapiv{$Q^{n+1}_{0}$}{ {$p^{n}_{1}$} {$p^{n}_{0}$} {$q^{n}_{1}$} {$q^{n}_{0}$} }{f}{0110111011110011}{}%
+}
+\bigskip
+
+You can use the last parameter to create to your own picture commands...
+\medskip
+
+{\fontfamily{phv}\selectfont\sansmath
+\askmapiii{F}{xyz}{f}{11100111}{%
+\color{red}\put(0.1,0.1){\dashbox{0.1}(0.8,1.8){}}%
+\color{blue}\put(1.1,1.1){\dashbox{0.1}(1.8,0.8){}}%
+\color{darkgreen}\put(2.1,0.1){\dashbox{0.1}(1.8,0.8){}}%
+\color{orange}\put(0.15,1.15){\dashbox{0.1}(1.7,0.7){}}%
+}}%
+\bigskip
+
+blabla
+\medskip
+
+\askmapii{F}{xy}{f}{0111}{%
+\setlength\fboxsep{0pt}\linethickness{0pt}
+\put(1.1,0.1){\pgfsetfillopacity{0.2}\colorbox{red}{\framebox(0.8,1.8){}}\pgfsetfillopacity{1}}%
+\put(0.1,0.1){\pgfsetfillopacity{0.2}\colorbox{blue}{\framebox(1.8,0.8){}}\pgfsetfillopacity{1}}%
+}
+
+\askmapii{F}{xy}{f}{0111}{%
+\begin{tikzpicture}[x=\askmapunitlength,y=\askmapunitlength]
+\draw[red] (0,0) rectangle (2,2);
+\end{tikzpicture}
+}
+
+
+\newpage
+\section*{Bounding Boxes around the Maps}
+
+{\setlength{\fboxsep}{0pt}%
+\fbox{%
+\askmapi{S}{a}{i}{01}{}%
+}%
+
+{\setlength{\fboxsep}{0pt}%
+\fbox{%
+\askmapii{S}{ab}{i}{0111}{}%
+}%
+
+{\setlength{\fboxsep}{0pt}%
+\fbox{%
+\askmapiii{S}{abc}{i}{01111111}{}%
+}%
+
+{\setlength{\fboxsep}{0pt}%
+\fbox{%
+\askmapiiialt{S}{abc}{i}{01111111}{}%
+}%
+
+{\setlength{\fboxsep}{0pt}%
+\fbox{%
+\askmapiv{S}{ab{x$^n$}{y$^n$}}{i}{0111111111111111}{}%
+}%
+
+{\setlength{\fboxsep}{0pt}%
+\fbox{%
+\askmapv{S}{abcll}{i}{01111111111111111111111111111111}{}%
+}%
+
+{\setlength{\fboxsep}{0pt}%
+\fbox{%
+\askmapv{$\mathrm{S_{a,b,c,d}}$}{abc{x$_0$}{x$_1^n$}}{i}{abcdefghijklmnopqrstuvwxyz0123456789}{}%
+}%
+Text next to Karnaugh map
+\bigskip
+
+%%% replacement for Karnaugh macros
+%{\setlength{\fboxsep}{0pt}%
+%\fbox{%
+%\askmap{2}{S}{ab}{abcd}{}
+%}%
+%\bigskip
+
+Next shows the use of \texttt{fbox} commands to show frameboxes.
+
+{\setlength{\fboxsep}{0pt}%
+{\fbox{%
+\begin{minipage}[t]{0.7\linewidth}
+\vspace{0pt}%
+{\setlength{\fboxsep}{0pt}%
+\fbox{%
+%\askmapv{$\mathrm{F(a,b,c,d)}$}{abc{x$_0$}{x$_1^n$}}{i}{01100010100101010100101000111111}{}%
+\askmapv{$\mathrm{M_1^{n+1}}$}{abc{x$_0$}{x$_1^n$}}{i}{01100010100101010100101000111111}{}%
+}}%
+\end{minipage}}\hfill
+\fbox{%
+\begin{minipage}[t]{0.3\linewidth}
+This is text.\vspace{0pt}
+\end{minipage}}}}
+
+\bigskip\bigskip
+Test to see in kvindex macro is working...
+\kvindex
+
+\askmap{1}{S}{ab}{abcd}{}
+
+\bigskip
+Test to see in kvnoindex macro is working...
+\kvnoindex
+
+\askmap{1}{S}{ab}{abcd}{}
+
+\bigskip
+The unit length of the Karnaugh map squares is
+\printlength{\askmapunitlength}
+
+\end{document}

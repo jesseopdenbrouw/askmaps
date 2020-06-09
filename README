@@ -1,0 +1,23 @@
+This small LaTex package provides the rendering of American style Karnaugh maps
+as found in many American text books on Digital Design. There are four files:
+
+README      - this file
+askmaps.sty - the package file
+askmaps.tex - the documention with examples
+askmaps.pdf - PDF version of the documentation
+
+The Karnaugh maps are rendered with picture commands; only the pict2e package
+is loaded.
+
+The Tikz package can be use to shape the Karnaugh maps as pleased.
+
+Current version is 0.2. At this point, only 1-5 variable Karnaugh maps
+are supported. People familiar with the Karnaugh package should have
+no problem in using the macros in this package.
+
+Suggestions and bug reports are welcome at J.E.J.opdenBrouw@hhs.nl
+
+Happy TeX-ing!
+
+                       Jesse op den Brouw
+                       2020/06/09

@@ -1,0 +1,69 @@
+
+
+
+\documentclass[a4paper]{article}
+\pagestyle{empty}
+
+\makeatletter
+
+\def\askmaps@opti{}% want indexes
+\def\askmaps@optf{}% want output function printed
+\def\askmaps@optb{b}% want input variable bit combinations at columns and rows
+
+\def\askmaps@expandparams#1{%
+	\@tfor\askmaps@opt:=#1\do{%
+		\#\askmaps@opt\#
+		\if i\askmaps@opt\def\askmaps@opti{i}\fi%
+		\if I\askmaps@opt\def\askmaps@opti{}\fi%
+		\if f\askmaps@opt\def\askmaps@optf{f}\fi%
+		\if F\askmaps@opt\def\askmaps@optf{}\fi%
+		\if b\askmaps@opt\def\askmaps@optb{b}\fi%
+		\if B\askmaps@opt\def\askmaps@optb{}\fi%
+		\if e\askmaps@opt\def\askmaps@optb{}\def\askmaps@optf{}\def\askmaps@opti{}\fi%
+	}%
+	%\if i\askmaps@opti Hallo \fi
+	%\#\askmaps@opti\#\askmaps@optf\#
+}%
+
+\newcommand{\blabla}[1]{%
+	Tekst%
+	\askmaps@expandparams{#1}%
+	Tekst2%
+	\#\askmaps@opti\#\askmaps@optf\#\askmaps@optb\#
+	\if i\askmaps@opti set indexes to true \fi
+}
+
+\def\expandparams{\askmaps@expandparams}
+
+\makeatother
+
+
+\begin{document}
+\def\myparams{if}%
+
+test 0
+
+%\makeatletter
+%\expandparams{abcdif}
+%\#\askmaps@opti\#\askmaps@optf\#
+%\makeatother
+
+\blabla{ibf}
+
+test 1
+
+%\expandparams{\myparams}
+
+test 2
+%\edef\myexpandedparams{\myparams}%
+
+%\expandparams{\myexpandedparams}
+
+%\#
+%\makeatletter
+%\show\askmaps@optf
+%\makeatother
+%\#
+
+
+\end{document}
