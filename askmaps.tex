@@ -239,7 +239,7 @@ The third parameter contains a list of options as explained below.
     \item[\texttt{f}] function output variable is printed at the upper right
                       corner of the Karnaugh map together with a small line
                       extending from the square to the function
-                      name.
+                      name (default, see Package Option Handling).
     \item[\texttt{F}] no function output variable is printed
     \item[\texttt{b}] bit combinations of the function input variables are
                       printed on top of the columns and at the left of the the
@@ -823,11 +823,13 @@ you can use Ti\textsl{k}Z' opacity control to add opaque solid rectangles in the
 }
 
 \bigskip
-In fact, use can use a \texttt{tikzpicture} environment to use Ti\textsl{k}Z commands:
+In fact, use can use a \texttt{tikzpicture} environment to use Ti\textsl{k}Z commands
+but you have to set an invisible point to coordinate to (0,0):
 
 \begin{verbatim}
 \askmapii{F}{xy}{f}{0111}{%
 \begin{tikzpicture}[x=\askmapunitlength,y=\askmapunitlength]%
+\draw[draw=none,fill=none] (0,0) -- (0,0); % Set default corner
 \draw[red, ultra thick] (0,0) rectangle (2,2);%
 \end{tikzpicture}%
 }
@@ -835,6 +837,7 @@ In fact, use can use a \texttt{tikzpicture} environment to use Ti\textsl{k}Z com
 
 \askmapii{F}{xy}{f}{0111}{%
 \begin{tikzpicture}[x=\askmapunitlength,y=\askmapunitlength]%
+\draw[draw=none,fill=none] (0,0) -- (0,0); % Set default corner
 \draw[red,ultra thick] (0,0) rectangle (2,2);%
 \end{tikzpicture}%
 }
