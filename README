@@ -9,7 +9,7 @@ askmaps.pdf - PDF version of the documentation
 The Karnaugh maps are rendered with picture commands; only the pict2e package
 is loaded.
 
-The Tikz package can be use to shape the Karnaugh maps as pleased.
+The Tikz package can be used to shape the Karnaugh maps as pleased.
 
 Current version is 0.2. At this point, only 1-5 variable Karnaugh maps
 are supported. People familiar with the Karnaugh package should have
@@ -20,4 +20,4 @@ Suggestions and bug reports are welcome at J.E.J.opdenBrouw@hhs.nl
 Happy TeX-ing!
 
                        Jesse op den Brouw
-                       2020/06/09
+                       2020/08/19
