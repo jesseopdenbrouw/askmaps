@@ -8,7 +8,7 @@
 %%            v0.1a - 2013/12/07
 %%                  - added \karnaughmap example
 %%                  - minor changes in text
-%%            v0.2  - 2020/08/19
+%%            v0.2  - 2020/23/10
 %%                  - added section on how to render covers
 %%                  - changes to the text.
 %%
@@ -842,6 +842,35 @@ but you have to set an invisible point to coordinate to (0,0):
 \end{tikzpicture}%
 }
 
+
+\section{Additional command}
+The command \cmdinvoke{askmapindexsize} sets the size and typeface of the minterm numbers in the cells. The default definition is set to
+
+\begin{lstlisting}
+\newcommand{\askmapindexsize}{\scriptsize\slshape}
+\end{lstlisting}
+
+The command \cmdinvoke{askmapcontentsize} sets the size and typeface for the cell's contents. The default definition is
+
+\begin{lstlisting}
+\newcommand{\askmapcontentsize}{\normalsize}
+\end{lstlisting}
+
+The command \cmdinvoke{askmapbitcombinationsize} sets the size and typeface for the bit combinations at the top and the left. The default definition is
+
+\begin{lstlisting}
+\newcommand{\askmapbitcombinationsize}{\footnotesize}
+\end{lstlisting}
+
+The command \cmdinvoke{askmapvarsep} sets the relative line length of the variable separator on the left of the Karnaugh map. The default definition is
+
+\begin{lstlisting}
+\newcommand{\askmapvarsep}{0.70}
+\end{lstlisting}
+
+These commands may be changed using the appropriate \cmdinvoke{renewcommand} command.
+
+
 %\newpage
 \section{Examples}
 \label{sec:examples}
@@ -1129,7 +1158,7 @@ be seen by the arrow.
 \begin{verbatim}
   4-dec-2013 -- v0.1
     initial release
- 19-aug-2020 -- v0.2
+ 23-oct-2020 -- v0.2
     added option disablef
     added askmapi - a K-map for one variable
     added askmapiiialt - alternate (vertical) version op K-map III
